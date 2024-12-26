@@ -1,4 +1,4 @@
-## Sales Insights Data Analysis Project
+## AtliQ Sales Insights Analysis
 
 ![image](https://github.com/user-attachments/assets/b66ed615-8457-4c38-9025-9646d1398ff3)
 
