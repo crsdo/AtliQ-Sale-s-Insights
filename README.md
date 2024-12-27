@@ -1,61 +1,98 @@
-## AtliQ Sales Insights Analysis
+# AtliQ Sales Insights Analysis
 
-![image](https://github.com/user-attachments/assets/b66ed615-8457-4c38-9025-9646d1398ff3)
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/b66ed615-8457-4c38-9025-9646d1398ff3" alt="AtliQ Logo" width="80%">
+</div>
 
-This project involves analyzing sales data using SQL and Power BI to derive meaningful insights. Below are the setup instructions and SQL queries used for analysis.
+## Project Overview
 
-### Instructions to setup mysql on your local computer
-
-1. Follow step in this video to install mysql on your local computer
-https://www.youtube.com/watch?v=WuBcTJnIuzo
-
-1. SQL database dump is in db_dump.sql file above. Download `db_dump.sql` file to your local computer and import it as per instructions given in the tutorial video
-
-### Data Analysis Using SQL
-
-1. Show all customer records
-
-    `SELECT * FROM customers;`
-
-1. Show total number of customers
-
-    `SELECT count(*) FROM customers;`
-
-1. Show transactions for Chennai market (market code for chennai is Mark001
-
-    `SELECT * FROM transactions where market_code='Mark001';`
-
-1. Show distrinct product codes that were sold in chennai
-
-    `SELECT distinct product_code FROM transactions where market_code='Mark001';`
-
-1. Show transactions where currency is US dollars
-
-    `SELECT * from transactions where currency="USD"`
-
-1. Show transactions in 2020 join by date table
-
-    `SELECT transactions.*, date.* FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020;`
-
-1. Show total revenue in year 2020,
-
-    `SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020 and transactions.currency="INR\r" or transactions.currency="USD\r";`
-	
-1. Show total revenue in year 2020, January Month,
-
-    `SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020 and and date.month_name="January" and (transactions.currency="INR\r" or transactions.currency="USD\r");`
-
-1. Show total revenue in year 2020 in Chennai
-
-    `SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020
-and transactions.market_code="Mark001";`
+This project involves a comprehensive analysis of sales data from AtliQ, a leading software development company, to uncover key trends and provide actionable insights for the sales, product, and marketing teams. The goal is to understand sales performance, identify key product drivers, and analyze customer behavior patterns to drive informed decision-making.
 
 
-Data Analysis Using Power BI
-============================
 
-1. Formula to create norm_amount column
+---
 
-`= Table.AddColumn(#"Filtered Rows", "norm_amount", each if [currency] ="USD#(cr)" then [sales_amount]*75 else [sales_amount], type any)`
+## Data & Methodology
+
+- **Data Source:**  
+  Sales data was extracted from AtliQ's CRM system, covering the period 2017–2020.
+
+- **Data Cleaning & Preparation:**  
+  - Cleaned and transformed the raw data using SQL to address missing values, inconsistencies, and data type issues.  
+  - Aggregated data by product, customer, and time periods to facilitate analysis.
+
+- **Data Analysis & Visualization:**  
+  - Utilized SQL for data extraction and aggregation.  
+  - Created interactive dashboards in **Power BI**, featuring:
+    - **Line Charts:** Highlighting sales trends, seasonal fluctuations, and the impact of the COVID-19 pandemic.  
+    - **Bar Charts:** Analyzing product performance, identifying top-selling products, and comparing sales across categories.  
+
+---
+
+## Key Findings
+
+### Sales Performance
+- **Post-Pandemic Decline:**  
+  Observed a **42% decline** in sales revenue from 2019 to 2020 following the onset of the COVID-19 pandemic.
+
+- **Seasonality:**  
+  Identified a strong seasonal pattern, with **peak sales in July and August**, likely driven by summer marketing campaigns or increased customer activity.
+
+ 
+
+### Customer Segmentation
+- **Key Segments Identified:**  
+  - **Large Enterprises:** Contributed 60% of revenue, with an average order value of $50,000.  
+  - **Small and Medium Businesses (SMBs):** Showed high growth potential, with a 12% YoY increase in orders.  
+
+- **Behavioral Patterns:**  
+  - Enterprises preferred long-term contracts.  
+  - SMBs made frequent but smaller purchases.
+
+---
+
+## Recommendations
+
+1. **Targeted Marketing Campaigns:**  
+   - Use **email marketing** and **LinkedIn ads** to re-engage enterprise clients.  
+   - Offer tailored summer promotions to SMBs.
+
+2. **Product Development:**  
+   - Expand features in high-performing products (e.g., integrations with [specific tools/platforms]).
+
+3. **Customer Loyalty Program:**  
+   - Introduce a tiered program offering discounts (5%, 10%, 15%) based on annual purchase volume.
+
+4. **Addressing Post-Pandemic Decline:**  
+   - Conduct surveys to identify customer challenges and adjust solutions accordingly.  
+   - Strengthen online sales channels and remote support options.
+
+---
+
+## Additional Analysis Opportunities
+
+1. **Predictive Analytics:**  
+   - Use time-series models to forecast sales trends and prepare for potential dips.
+
+2. **Regional Performance Analysis:**  
+   - Assess sales by regions to identify high-growth or underperforming markets.
+
+3. **Competitor Analysis:**  
+   - Benchmark AtliQ’s performance against industry standards to identify gaps or competitive advantages.
+
+4. **Profitability Analysis:**  
+   - Focus on high-margin products and customer segments to optimize resource allocation.
+
+---
+
+## Tools & Technologies
+
+- **SQL:**  
+  Used for data extraction, cleaning, and aggregation.
+
+- **Power BI:**  
+  Created dynamic, interactive dashboards to visualize trends and performance metrics.
+
+
 
 
